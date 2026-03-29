@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-lelab-yellow text-lelab-charcoal font-sans antialiased overflow-x-hidden min-h-screen selection:bg-lelab-charcoal selection:text-lelab-yellow;
+  }
+}
+
+@layer components {
+  /* Container for consistent spacing */
+  .lelab-container {
+    @apply max-w-[1920px] mx-auto px-6 sm:px-12 md:px-24;
+  }
+
+  /* Le-Lab Pill Buttons */
+  .btn-pill-dark {
+    @apply bg-lelab-charcoal text-lelab-yellow px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform duration-300 inline-flex items-center justify-center;
+  }
+  
+  .btn-pill-light {
+    @apply bg-lelab-light text-lelab-charcoal px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform duration-300 inline-flex items-center justify-center border border-lelab-charcoal/10;
+  }
+}
+
+/* Custom Scrollbar - Hidden for seamless scrolling but functional */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3B026; /* lelab-yellow */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #111111; /* lelab-charcoal */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
