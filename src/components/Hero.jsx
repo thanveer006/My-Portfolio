@@ -8,31 +8,31 @@ const Hero = () => {
       
       {/* Massive Central Typography */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full px-4 text-center">
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.9, y: 50 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-[18vw] sm:text-[15vw] md:text-[12vw] font-extrabold leading-[0.85] tracking-tighter uppercase text-lelab-light drop-shadow-[0_10px_0px_rgba(17,17,17,0.1)] select-none"
-        >
-          FULL STACK
-        </motion.h1>
-
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="font-sans font-bold uppercase tracking-[0.3em] text-lelab-charcoal text-sm sm:text-base md:text-lg select-none my-3"
+          className="font-sans font-bold uppercase tracking-[0.3em] text-lelab-charcoal text-base sm:text-xl md:text-2xl select-none mb-4"
         >
-          THANVEER AHAMMED N
+          MERN FULL STACK DEVELOPER
         </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.9, y: 50 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display text-[16vw] sm:text-[13vw] md:text-[11vw] font-extrabold leading-[0.85] tracking-tighter uppercase text-white select-none"
+        >
+          THANVEER
+        </motion.h1>
 
         <motion.h2
           initial={{ opacity: 0, scale: 0.9, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-[12vw] sm:text-[10vw] md:text-[8vw] font-extrabold leading-[0.85] tracking-tighter uppercase text-lelab-charcoal select-none"
+          className="font-display text-[16vw] sm:text-[13vw] md:text-[11vw] font-extrabold leading-[0.85] tracking-tighter uppercase text-lelab-charcoal select-none"
         >
-          DEVELOPER
+          AHAMMED N
         </motion.h2>
 
         {/* Small subtitle badge */}
@@ -44,6 +44,18 @@ const Hero = () => {
         >
           BUILDING DIGITAL EXPERIENCES
         </motion.div>
+
+        {/* Resume Download */}
+        <motion.a
+          href="/resume.pdf"
+          download
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="mt-4 px-8 py-3 border-2 border-lelab-charcoal text-lelab-charcoal font-bold uppercase tracking-widest text-xs rounded-full hover:bg-lelab-charcoal hover:text-lelab-yellow transition-all duration-300"
+        >
+          Download Resume
+        </motion.a>
 
         {/* Currently Exploring */}
         <motion.div

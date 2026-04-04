@@ -12,10 +12,10 @@ export default {
       },
       colors: {
         lelab: {
-          yellow: '#F3B026',
-          charcoal: '#111111',
+          yellow: '#00CFFD',
+          charcoal: '#0D0D1A',
           light: '#FFFFFF',
-          gray: '#E0E0E0'
+          gray: '#A0AEC0'
         },
       },
       animation: {

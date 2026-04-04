@@ -7,6 +7,7 @@ const navLinks = [
   { title: 'Skills', id: 'skills' },
   { title: 'Projects', id: 'projects' },
   { title: 'Experience', id: 'experience' },
+  { title: 'Education', id: 'education' },
   { title: 'Certifications', id: 'certifications' },
 ];
 
@@ -47,7 +48,7 @@ const Navbar = () => {
     }
   };
 
-  const isDarkSection = ['about', 'projects', 'contact'].includes(active);
+  const isDarkSection = ['about', 'projects', 'experience', 'certifications', 'contact'].includes(active);
 
   return (
     <>

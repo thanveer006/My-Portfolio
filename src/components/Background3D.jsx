@@ -13,9 +13,9 @@ const ParticleField = () => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     const colorOptions = [
-      new THREE.Color('#F3B026'), // lelab-yellow
+      new THREE.Color('#00CFFD'), // lelab-yellow
       new THREE.Color('#FFFFFF'), // lelab-light
-      new THREE.Color('#F3B026'), // lelab-yellow (weighted more)
+      new THREE.Color('#00CFFD'), // lelab-yellow (weighted more)
       new THREE.Color('#FFFFFF'), // lelab-light (weighted more)
     ];
 
@@ -79,7 +79,7 @@ const Background3D = () => {
   return (
     <div className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-20">
       <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-        <fog attach="fog" args={['#111111', 10, 50]} />
+        <fog attach="fog" args={['#0D0D1A', 10, 50]} />
         <ParticleField />
       </Canvas>
     </div>

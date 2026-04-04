@@ -44,7 +44,7 @@ const Contact = () => {
               className="font-display text-7xl md:text-9xl font-bold text-transparent leading-[0.8]"
               style={{ WebkitTextStroke: '2px #F3B026' }}
             >
-              06
+              07
             </motion.div>
              <motion.h2 
               initial={{ opacity: 0, x: -30 }}
