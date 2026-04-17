@@ -1,16 +1,56 @@
-# React + Vite
+# Thanveer Ahammed N — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, high-performance portfolio website built with **React**, **Vite**, and **Tailwind CSS**. Designed with a "DOPA-inspired" aesthetic featuring dark mode, glassmorphism, 3D backgrounds, and smooth motion patterns.
 
-Currently, two official plugins are available:
+## 🚀 Optimized Web Development
+- **Framework:** React 18
+- **Build Tool:** Vite (for near-instant HMR)
+- **Styling:** Tailwind CSS (Custom Design System)
+- **Animations:** Framer Motion (for fluid, high-end transitions)
+- **3D Graphics:** React Three Fiber / Three.js
+- **Icons:** React Icons (FontAwesome)
+- **Form Handling:** EmailJS Integration
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Design System
+This portfolio uses a strict, curated color palette and typography system:
+- **Charcoal:** `#0a0a0a` (Main background)
+- **Yellow:** `#EFB909` (Primary accent)
+- **Surface:** `#111111` (Component backgrounds)
+- **Light:** `#EFEFEF` (Main text)
+- **Gray:** `#666666` (Subtext)
+- **Typography:** *Display* — Oswald | *Sans* — Inter
 
-## React Compiler
+## 📂 Project Structure
+```text
+src/
+├── components/          # Reusable UI components
+│   ├── canvas/          # 3D/Canvas elements
+│   └── ...
+├── assets/              # Static assets
+├── index.css            # Global styles & design tokens
+└── App.jsx              # Main routing and layout
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠 Setup & Deployment
+### Local Development
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run development server: `npm run dev`
 
-## Expanding the ESLint configuration
+### Environment Variables
+To enable the contact form, create a `.env` file with:
+```env
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Build for Production
+```bash
+npm run build
+```
+
+## 👤 Author
+**Thanveer Ahammed N**  
+*MERN Full Stack Developer & AI Automation Enthusiast*  
+[GitHub](https://github.com/thanveer006) | [LinkedIn](https://www.linkedin.com/in/thanveer-ahammed-dev)
