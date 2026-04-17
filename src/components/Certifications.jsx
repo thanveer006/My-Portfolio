@@ -4,14 +4,9 @@ import { useInView } from 'react-intersection-observer';
 
 const certifications = [
   {
-    title: "AI For All – AI Appreciate Stage",
+    title: "AI For All Program — AI Aware & Appreciate Stages",
     issuer: "Intel & CBSE",
-    date: "04/06/2025",
-  },
-  {
-    title: "AI For All – AI Aware Stage",
-    issuer: "Intel & CBSE",
-    date: "04/06/2025",
+    date: "June 2025",
   },
 ];
 

@@ -63,7 +63,7 @@ const About = () => {
             >
               {[
                 { value: '5+', label: 'Projects Built' },
-                { value: '1 Year', label: 'Training' },
+                { value: 'MERN', label: 'Stack' },
                 { value: '2', label: 'Certifications' },
               ].map((stat, i) => (
                 <div key={i} className="flex flex-col">
