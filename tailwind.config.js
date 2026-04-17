@@ -12,7 +12,7 @@ export default {
       },
       colors: {
         lelab: {
-          yellow: '#F3B026',
+          yellow: '#FF6500',
           charcoal: '#0D0D1A',
           light: '#FFFFFF',
           gray: '#A0AEC0'

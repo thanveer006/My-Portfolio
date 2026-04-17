@@ -35,7 +35,7 @@ const Experience = () => {
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="font-display text-7xl md:text-9xl font-bold text-transparent leading-[0.8]"
-              style={{ WebkitTextStroke: '2px #F3B026' }}
+              style={{ WebkitTextStroke: '2px #FF6500' }}
             >
               04
             </motion.div>

@@ -13,10 +13,10 @@ const ParticleField = () => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     const colorOptions = [
-      new THREE.Color('#00CFFD'), // lelab-yellow
-      new THREE.Color('#FFFFFF'), // lelab-light
-      new THREE.Color('#00CFFD'), // lelab-yellow (weighted more)
-      new THREE.Color('#FFFFFF'), // lelab-light (weighted more)
+      new THREE.Color('#FF6500'),
+      new THREE.Color('#FFFFFF'),
+      new THREE.Color('#FF6500'),
+      new THREE.Color('#FFFFFF'),
     ];
 
     for (let i = 0; i < count; i++) {
