@@ -1,147 +1,152 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const projects = [
   {
-    title: "E-Commerce",
+    title: "E-Commerce Platform",
     category: "Full Stack",
-    description: "A comprehensive MERN stack e-commerce solution featuring admin dashboards, secure payments, and a responsive shopping experience.",
-    tech: ["React.js", "Node.js", "MongoDB", "Redux"],
+    year: "2024",
+    description: "A comprehensive MERN stack e-commerce solution with admin dashboards, secure payments, product management, and a responsive shopping experience.",
+    tech: ["React.js", "Node.js", "MongoDB", "Redux", "Stripe"],
     github: "https://github.com/thanveer006",
-    live: "#"
+    live: "",
   },
   {
-    title: "Portfolio",
-    category: "Design & UI",
-    description: "A high-performance portfolio showcasing complex animations, strict design systems, and modern component structure.",
-    tech: ["React.js", "Vite", "Tailwind CSS"],
+    title: "Social Media App",
+    category: "Full Stack",
+    year: "2024",
+    description: "Real-time social platform built with MERN + Socket.IO. Features posts, comments, likes, real-time chat, notifications, and user profiles.",
+    tech: ["React.js", "Node.js", "Socket.IO", "MongoDB", "JWT"],
     github: "https://github.com/thanveer006",
-    live: "#"
+    live: "",
   },
   {
     title: "Shopping Cart",
     category: "Full Stack",
-    description: "Full-stack responsive e-commerce app with product pages, cart, checkout, authentication, and API integration.",
+    year: "2024",
+    description: "Full-stack responsive e-commerce app with product pages, cart, checkout flow, authentication, and REST API integration.",
     tech: ["React.js", "Node.js", "MongoDB", "Express"],
     github: "https://github.com/thanveer006",
-    live: "#"
-  },
-  {
-    title: "Social Media Web App",
-    category: "Full Stack",
-    description: "Built using MERN + Socket.IO with posts, comments, likes, real-time chat, notifications, and profiles.",
-    tech: ["React.js", "Node.js", "Socket.IO", "MongoDB"],
-    github: "https://github.com/thanveer006",
-    live: "#"
+    live: "",
   },
   {
     title: "Music Streaming App",
     category: "Frontend Dev",
-    description: "UI-focused music player with playlists, search, audio controls, and smooth user experience.",
+    year: "2024",
+    description: "UI-focused music player with playlists, search, audio controls, and smooth transitions built entirely in React.",
     tech: ["React.js", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/thanveer006",
-    live: "#"
-  }
+    live: "",
+  },
+  {
+    title: "Portfolio Website",
+    category: "Design & Dev",
+    year: "2025",
+    description: "This portfolio — built with React, Vite, and Tailwind CSS. Features complex animations, a strict design system, and modern component architecture.",
+    tech: ["React.js", "Vite", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/thanveer006",
+    live: "",
+  },
 ];
 
 const Projects = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
-    <section id="projects" className="relative w-full py-32 bg-lelab-charcoal text-lelab-light overflow-hidden">
-      <div className="lelab-container w-full" ref={ref}>
-        
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 border-b-2 border-lelab-light/10 pb-8">
-          <div className="flex items-end gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: -50 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-display text-7xl md:text-9xl font-bold text-transparent leading-[0.8]"
-              style={{ WebkitTextStroke: '2px #FFFFFF' }}
+    <section id="projects" className="relative w-full py-32 md:py-40 bg-lelab-charcoal text-lelab-light">
+      <div className="lelab-container" ref={ref}>
+
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 pb-10 border-b border-white/[0.06]">
+          <div>
+            <motion.p
+              initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.6 }} className="section-label mb-4"
             >
-              03
-            </motion.div>
-             <motion.h2 
-              initial={{ opacity: 0, x: -30 }}
-              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="font-display text-5xl md:text-7xl font-black uppercase tracking-tighter"
+              03 — Selected Works
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="font-display font-black uppercase leading-[0.9] tracking-tighter text-5xl md:text-6xl"
             >
-              SELECTED<br /><span className="text-lelab-yellow">WORKS</span>
+              Projects
             </motion.h2>
           </div>
-          
-          <motion.a 
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            href="https://github.com/thanveer006" 
-            target="_blank" 
-            rel="noreferrer" 
-            className="hidden md:flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-lelab-yellow transition-colors duration-300 btn-pill-light !bg-transparent !text-lelab-light hover:!border-lelab-yellow"
+          <motion.a
+            initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            href="https://github.com/thanveer006" target="_blank" rel="noreferrer"
+            className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-lelab-gray hover:text-lelab-yellow transition-colors duration-300"
           >
-            All Projects <FaGithub size={18} />
+            All on GitHub <FaGithub size={13} />
           </motion.a>
         </div>
 
-        {/* Project Mega-List */}
-        <div className="flex flex-col w-full">
-          {projects.map((project, index) => (
+        {/* Card grid — 2 columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {projects.map((p, i) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-              className="group relative flex flex-col lg:flex-row md:items-center justify-between py-12 md:py-16 border-b border-lelab-light/10 hover:border-lelab-yellow transition-colors duration-500 cursor-pointer"
+              key={i}
+              initial={{ opacity: 0, y: 32 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
+              className="group border border-white/[0.07] rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
             >
-              {/* Background Color Fill on Hover */}
-              <div className="absolute inset-0 bg-lelab-yellow scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"></div>
+              {/* Image placeholder */}
+              <div className="h-44 bg-lelab-surface border-b border-white/[0.06] group-hover:bg-white/[0.03] transition-colors duration-300 flex items-center justify-center relative overflow-hidden">
+                {/* Subtle inner grid */}
+                <div
+                  className="absolute inset-0 opacity-[0.06]"
+                  style={{
+                    backgroundImage: 'linear-gradient(rgba(239,185,9,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(239,185,9,0.4) 1px, transparent 1px)',
+                    backgroundSize: '32px 32px',
+                  }}
+                />
+                <span className="relative text-lelab-gray/30 text-[10px] font-bold uppercase tracking-[0.3em]">
+                  Preview
+                </span>
+              </div>
 
-              {/* Content (needs higher z-index to sit above hover bg) */}
-              <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center w-full justify-between gap-8 lg:gap-16 pointer-events-none group-hover:text-lelab-charcoal transition-colors duration-500">
-                
-                {/* Title & Category */}
-                <div className="w-full lg:w-5/12">
-                  <span className="text-sm font-bold uppercase tracking-widest text-lelab-yellow group-hover:text-lelab-charcoal mb-4 block transition-colors duration-500">
-                    {project.category}
-                  </span>
-                  <h3 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold uppercase tracking-tighter group-hover:translate-x-4 transition-transform duration-500">
-                    {project.title}
-                  </h3>
+              {/* Content */}
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-lelab-yellow/70">{p.category}</span>
+                  <span className="text-[10px] text-lelab-gray/40 font-medium">{p.year}</span>
                 </div>
 
-                {/* Description & Tech */}
-                <div className="w-full lg:w-5/12">
-                  <p className="text-lg md:text-xl font-medium leading-relaxed mb-6 group-hover:text-lelab-charcoal/80 transition-colors duration-500">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, i) => (
-                      <span key={i} className="px-3 py-1 border border-lelab-light/20 rounded-full text-xs font-bold uppercase tracking-wider group-hover:border-lelab-charcoal/20 group-hover:text-lelab-charcoal transition-colors duration-500">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                <h3 className="font-display text-xl font-black uppercase tracking-tight text-lelab-light mb-2 group-hover:text-lelab-yellow transition-colors duration-300">
+                  {p.title}
+                </h3>
+
+                <p className="text-[13px] text-lelab-gray leading-[1.8] tracking-[0.01em] mb-5">
+                  {p.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {p.tech.map((t) => (
+                    <span key={t} className="text-[10px] font-semibold uppercase tracking-wider text-lelab-gray/50 border border-white/8 rounded-full px-3 py-1">
+                      {t}
+                    </span>
+                  ))}
                 </div>
 
-                {/* Links / Arrow */}
-                <div className="w-full lg:w-2/12 flex justify-start lg:justify-end pointer-events-auto">
-                    <div className="flex items-center gap-4">
-                      {project.live && project.live !== '#' && (
-                        <a href={project.live} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-lelab-light/20 flex items-center justify-center group-hover:border-lelab-charcoal group-hover:bg-lelab-charcoal group-hover:text-lelab-yellow transition-all duration-300 hover:scale-110">
-                          <FaExternalLinkAlt size={16} />
-                        </a>
-                      )}
-                      <a href={project.github} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-lelab-light/20 flex items-center justify-center group-hover:border-lelab-charcoal group-hover:text-lelab-charcoal transition-all duration-300 hover:scale-110">
-                        <FaGithub size={20} />
-                      </a>
-                    </div>
+                <div className="flex items-center gap-4 pt-4 border-t border-white/[0.06]">
+                  <a href={p.github} target="_blank" rel="noreferrer"
+                    className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-lelab-gray hover:text-lelab-light transition-colors duration-300"
+                  >
+                    <FaGithub size={13} /> GitHub
+                  </a>
+                  {p.live && (
+                    <a href={p.live} target="_blank" rel="noreferrer"
+                      className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-lelab-gray hover:text-lelab-yellow transition-colors duration-300"
+                    >
+                      <FaExternalLinkAlt size={11} /> Live
+                    </a>
+                  )}
                 </div>
-
               </div>
             </motion.div>
           ))}

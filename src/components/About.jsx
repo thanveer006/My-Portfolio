@@ -2,92 +2,88 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
+const stats = [
+  { value: '5+',   label: 'Projects Shipped' },
+  { value: 'MERN', label: 'Stack'             },
+  { value: '2',    label: 'Certifications'    },
+];
+
 const About = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
+
+  const anim = (delay = 0) => ({
+    initial:   { opacity: 0, y: 32 },
+    animate:   inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 },
+    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  });
 
   return (
-    <section id="about" className="relative w-full min-h-screen py-32 bg-lelab-charcoal text-lelab-light flex items-center overflow-hidden">
-      
-      {/* Background Decorative Text */}
-      <div className="absolute top-10 left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none">
-        <h2 className="font-display text-[20vw] font-extrabold whitespace-nowrap text-lelab-light">
-          INNOVATIVE DEVELOPER
-        </h2>
-      </div>
+    <section id="about" className="relative w-full py-32 md:py-40 bg-lelab-charcoal text-lelab-light">
+      <div className="lelab-container" ref={ref}>
 
-      <div className="lelab-container w-full relative z-10" ref={ref}>
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-32">
-          
-          {/* Left Column - Large Index & Title */}
-          <div className="lg:w-1/3 flex flex-col justify-start">
-            <motion.div
-              initial={{ opacity: 0, y: -50 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-display text-8xl md:text-9xl font-bold text-transparent"
-              style={{ WebkitTextStroke: '2px #FF6500' }}
+        {/* Top label */}
+        <motion.p {...anim(0)} className="section-label mb-10">01 — About Me</motion.p>
+
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+
+          {/* Left: Heading */}
+          <div className="lg:w-5/12">
+            <motion.h2
+              {...anim(0.1)}
+              className="font-display font-black uppercase leading-[0.9] tracking-tighter text-5xl md:text-6xl lg:text-7xl"
             >
-              01
-            </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, x: -30 }}
-              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="font-display text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] mt-6 text-lelab-yellow"
-            >
-              ABOUT<br />THE LAB
+              Building the
+              <br />
+              <span className="text-lelab-yellow">Web of Tomorrow</span>
+              <br />
+              — Today.
             </motion.h2>
-          </div>
-
-          {/* Right Column - Text & Stats */}
-          <div className="lg:w-2/3 flex flex-col justify-center pt-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            >
-               <p className="text-xl md:text-3xl leading-snug font-medium mb-12 max-w-3xl">
-                I am a MERN Full Stack Developer based in Calicut, Kerala, with a strong interest in <span className="text-lelab-yellow font-bold">Generative AI and AI Automation</span>. My expertise lies in architecting and building modern web applications using <span className="text-lelab-yellow font-bold">React, Node.js, Express, and MongoDB</span>.
-              </p>
-              <p className="text-lg md:text-xl text-lelab-gray leading-relaxed max-w-2xl mb-16">
-                I focus on writing clean, maintainable code and designing stark, functional user interfaces. Beyond development, I bring a Graphic Design background — typography, branding, and visual identity. Whether it's complex backend logic, visually stunning frontends, or automation workflows with n8n, I engineer experiences that matter.
-              </p>
-            </motion.div>
 
             {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-              className="flex flex-wrap gap-12 mb-16"
-            >
-              {[
-                { value: '5+', label: 'Projects Built' },
-                { value: 'MERN', label: 'Stack' },
-                { value: '2', label: 'Certifications' },
-              ].map((stat, i) => (
-                <div key={i} className="flex flex-col">
-                  <span className="font-display text-5xl md:text-6xl font-black text-lelab-yellow leading-none">{stat.value}</span>
-                  <span className="text-sm font-bold uppercase tracking-widest text-lelab-gray mt-2">{stat.label}</span>
+            <motion.div {...anim(0.25)} className="mt-12 grid grid-cols-3 gap-0 border border-white/8 rounded-2xl overflow-hidden">
+              {stats.map((s, i) => (
+                <div key={i} className={`flex flex-col items-center py-6 px-4 ${i < stats.length - 1 ? 'border-r border-white/8' : ''}`}>
+                  <span className="font-display text-3xl md:text-4xl font-black text-lelab-yellow leading-none">{s.value}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-lelab-gray mt-2 text-center">{s.label}</span>
                 </div>
               ))}
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-              className="flex flex-wrap gap-4"
-            >
-              <a href="/resume.pdf" download="Thanveer_Ahammed_Resume.pdf" className="btn-pill-light">Download Resume</a>
+            <motion.div {...anim(0.35)} className="mt-8 flex flex-wrap gap-3">
+              <a href="/resume.pdf" download="Thanveer_Ahammed_Resume.pdf" className="btn-primary">
+                Download Resume
+              </a>
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn-pill-dark !bg-lelab-yellow !text-lelab-charcoal hover:!bg-lelab-light"
+                className="btn-secondary"
               >
-                Contact Me
+                Get in Touch
               </button>
             </motion.div>
           </div>
+
+          {/* Right: Bio */}
+          <div className="lg:w-7/12 flex flex-col justify-center">
+            <motion.p {...anim(0.15)} className="text-base md:text-lg leading-[1.85] tracking-[0.015em] text-lelab-light/80 mb-6">
+              I'm a <span className="text-lelab-light font-semibold">MERN Full Stack Developer</span> based in Calicut, Kerala — passionate about building fast, functional, and beautifully designed web applications.
+            </motion.p>
+            <motion.p {...anim(0.2)} className="text-sm md:text-base leading-[1.85] tracking-[0.015em] text-lelab-gray mb-6">
+              My focus is on <span className="text-lelab-light/70">Generative AI and AI Automation</span>, working with tools like n8n and LLM APIs to build intelligent workflows that save time and scale effortlessly.
+            </motion.p>
+            <motion.p {...anim(0.25)} className="text-sm md:text-base leading-[1.85] tracking-[0.015em] text-lelab-gray">
+              Beyond engineering, I bring a <span className="text-lelab-light/70">Graphic Design background</span> — typography, branding, and visual identity — which means my UIs aren't just functional, they're polished.
+            </motion.p>
+
+            {/* Tag list */}
+            <motion.div {...anim(0.3)} className="mt-10 flex flex-wrap gap-2">
+              {['React', 'Node.js', 'MongoDB', 'Express', 'AI Automation', 'n8n', 'Graphic Design', 'Prompt Engineering'].map((tag) => (
+                <span key={tag} className="text-xs font-semibold uppercase tracking-wider text-lelab-gray border border-white/10 rounded-full px-4 py-1.5 hover:border-lelab-yellow hover:text-lelab-yellow transition-colors duration-300 cursor-default">
+                  {tag}
+                </span>
+              ))}
+            </motion.div>
+          </div>
+
         </div>
       </div>
     </section>

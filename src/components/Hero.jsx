@@ -1,128 +1,114 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from 'react-icons/fa';
 
 const Hero = () => {
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+  };
+
   return (
-    <section id="hero" className="relative w-full h-screen bg-lelab-yellow text-lelab-charcoal flex items-center justify-center overflow-hidden">
-      
-      {/* Massive Central Typography */}
-      <div className="relative z-10 flex flex-col items-center justify-center w-full px-4 text-center">
+    <section id="hero" className="relative w-full min-h-screen bg-lelab-charcoal text-lelab-light flex flex-col justify-between overflow-hidden">
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col items-center justify-center px-6 text-center pt-24 pb-10 relative z-10">
+
+        {/* Name */}
+        <div className="overflow-hidden">
+          <motion.h1
+            initial={{ opacity: 0, y: 80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display font-extrabold uppercase leading-[0.88] tracking-tighter select-none text-lelab-light"
+            style={{ fontSize: 'clamp(3.5rem, 14vw, 13rem)' }}
+          >
+            THANVEER
+          </motion.h1>
+        </div>
+        <div className="overflow-hidden">
+          <motion.h1
+            initial={{ opacity: 0, y: 80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display font-extrabold uppercase text-lelab-gray leading-[0.88] tracking-tighter select-none"
+            style={{ fontSize: 'clamp(1.8rem, 7vw, 6rem)' }}
+          >
+            AHAMMED N
+          </motion.h1>
+        </div>
+
+        {/* Role */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="font-sans font-bold uppercase tracking-[0.3em] text-lelab-charcoal text-base sm:text-xl md:text-2xl select-none mb-4"
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="mt-6 text-lelab-gray text-base md:text-lg font-medium max-w-lg"
         >
-          MERN FULL STACK DEVELOPER
+          MERN Full Stack Developer &amp; AI Automation Enthusiast
+          <br className="hidden md:block" />
+          based in Calicut, Kerala, India.
         </motion.p>
 
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.9, y: 50 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-[16vw] sm:text-[13vw] md:text-[11vw] font-extrabold leading-[0.85] tracking-tighter uppercase text-white select-none"
-        >
-          THANVEER
-        </motion.h1>
-
-        <motion.h2
-          initial={{ opacity: 0, scale: 0.9, y: 50 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-[16vw] sm:text-[13vw] md:text-[11vw] font-extrabold leading-[0.85] tracking-tighter uppercase text-lelab-charcoal select-none"
-        >
-          AHAMMED N
-        </motion.h2>
-
-        {/* Small subtitle badge */}
+        {/* CTAs */}
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 1, delay: 0.5 }}
-           className="mt-12 bg-lelab-charcoal text-lelab-yellow px-6 py-2 rounded-full font-bold uppercase tracking-widest text-xs"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
-          BUILDING DIGITAL EXPERIENCES
+          <button onClick={() => scrollTo('projects')} className="btn-primary">
+            View My Work
+          </button>
+          <a href="/resume.pdf" download="Thanveer_Ahammed_Resume.pdf" className="btn-secondary">
+            Download Resume
+          </a>
         </motion.div>
 
-        {/* Resume Download */}
-        <motion.a
-          href="/resume.pdf"
-          download
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="mt-4 px-8 py-3 border-2 border-lelab-charcoal text-lelab-charcoal font-bold uppercase tracking-widest text-xs rounded-full hover:bg-lelab-charcoal hover:text-lelab-yellow transition-all duration-300"
-        >
-          Download Resume
-        </motion.a>
-
-        {/* Currently Exploring */}
+        {/* Socials */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="mt-4 flex items-center gap-2 text-lelab-charcoal/70 text-xs font-bold uppercase tracking-widest"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="mt-10 flex items-center gap-6"
         >
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-          Currently Exploring: AI Agents · Next.js
+          <a href="https://github.com/thanveer006" target="_blank" rel="noopener noreferrer"
+            className="text-lelab-gray hover:text-lelab-light transition-colors duration-300">
+            <FaGithub size={18} />
+          </a>
+          <span className="w-px h-4 bg-lelab-light/10" />
+          <a href="https://www.linkedin.com/in/thanveer-ahammed-dev" target="_blank" rel="noopener noreferrer"
+            className="text-lelab-gray hover:text-lelab-light transition-colors duration-300">
+            <FaLinkedin size={18} />
+          </a>
+          <span className="w-px h-4 bg-lelab-light/10" />
+          <a href="mailto:thanveerahd06@gmail.com"
+            className="text-lelab-gray hover:text-lelab-light transition-colors duration-300">
+            <FaEnvelope size={18} />
+          </a>
         </motion.div>
       </div>
 
-      {/* --- Framed UI Elements (Fixed to edges) --- */}
-
-      {/* Bottom Left: Location + Availability */}
+      {/* Bottom bar */}
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 0.8 }}
-        className="absolute bottom-10 left-8 md:left-16 flex flex-col gap-3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.9 }}
+        className="relative z-10 border-t border-white/5 px-6 sm:px-10 md:px-16 lg:px-24 py-5 flex items-center justify-between"
       >
-        <span className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-lelab-charcoal">
-          <span className="w-4 h-4 rounded-full border-2 border-lelab-charcoal flex items-center justify-center">
-            <span className="w-1.5 h-1.5 bg-lelab-charcoal rounded-full"></span>
-          </span>
-          CALICUT, IN
+        <span className="text-xs text-lelab-gray uppercase tracking-widest font-medium">
+          Calicut, Kerala · India
         </span>
-        <span className="flex items-center gap-2 bg-lelab-charcoal text-lelab-yellow px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest w-fit">
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-          Open to Work
+        <button
+          onClick={() => scrollTo('about')}
+          className="flex items-center gap-2 text-xs text-lelab-gray hover:text-lelab-yellow transition-colors duration-300 uppercase tracking-widest font-medium group"
+        >
+          Scroll down
+          <FaArrowDown size={11} className="group-hover:translate-y-1 transition-transform duration-300" />
+        </button>
+        <span className="text-xs text-lelab-gray uppercase tracking-widest font-medium">
+          Currently exploring: AI Agents
         </span>
-      </motion.div>
-
-      {/* Bottom Right: Socials */}
-      <motion.div 
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 0.8 }}
-        className="absolute bottom-10 right-8 md:right-16 flex items-center gap-6"
-      >
-        <a href="https://github.com/thanveer006" target="_blank" rel="noopener noreferrer" className="text-lelab-charcoal hover:scale-125 transition-transform duration-300">
-          <FaGithub size={20} />
-        </a>
-        <a href="https://www.linkedin.com/in/thanveer-ahammed-dev" target="_blank" rel="noopener noreferrer" className="text-lelab-charcoal hover:scale-125 transition-transform duration-300">
-          <FaLinkedin size={20} />
-        </a>
-        <a href="mailto:thanveerahd06@gmail.com" className="text-lelab-charcoal hover:scale-125 transition-transform duration-300">
-          <FaEnvelope size={20} />
-        </a>
-      </motion.div>
-
-      {/* Bottom Center: Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <div className="w-6 h-10 border-2 border-lelab-charcoal rounded-full flex justify-center p-1">
-          <motion.div 
-            animate={{ y: [0, 12, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            className="w-1.5 h-3 bg-lelab-charcoal rounded-full"
-          />
-        </div>
-        <span className="font-display font-bold uppercase tracking-widest text-[10px] text-lelab-charcoal">Scroll</span>
       </motion.div>
 
     </section>

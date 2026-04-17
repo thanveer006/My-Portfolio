@@ -6,40 +6,87 @@
 
 @layer base {
   body {
-    @apply bg-lelab-yellow text-lelab-charcoal font-sans antialiased overflow-x-hidden min-h-screen selection:bg-lelab-charcoal selection:text-lelab-yellow;
+    @apply bg-lelab-charcoal text-lelab-light font-sans antialiased overflow-x-hidden min-h-screen selection:bg-lelab-yellow selection:text-lelab-charcoal;
+    line-height: 1.8;
+    letter-spacing: 0.012em;
   }
+}
+
+/* Noise grain overlay — fixed, non-interactive */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.032;
+}
+
+/* Faint global grid pattern */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(239,185,9,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239,185,9,0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
 
 @layer components {
-  /* Container for consistent spacing */
   .lelab-container {
-    @apply max-w-[1920px] mx-auto px-6 sm:px-12 md:px-24;
+    @apply max-w-7xl mx-auto px-6 sm:px-10 md:px-16 lg:px-24;
   }
 
-  /* Le-Lab Pill Buttons */
+  /* Primary button — yellow fill, compact */
+  .btn-primary {
+    @apply bg-lelab-yellow text-lelab-charcoal px-6 py-2.5 rounded-full font-bold uppercase tracking-widest text-[11px] inline-flex items-center justify-center gap-2;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .btn-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  /* Secondary button — outlined, compact */
+  .btn-secondary {
+    @apply bg-transparent text-lelab-light border border-lelab-light/20 px-6 py-2.5 rounded-full font-bold uppercase tracking-widest text-[11px] inline-flex items-center justify-center gap-2;
+    transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+  .btn-secondary:hover {
+    @apply border-lelab-light/60 text-lelab-light;
+    transform: translateY(-1px);
+  }
+
+  /* Section label */
+  .section-label {
+    @apply text-lelab-yellow text-xs font-bold uppercase tracking-[0.3em];
+  }
+
+  /* Legacy support */
   .btn-pill-dark {
-    @apply bg-lelab-charcoal text-lelab-yellow px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform duration-300 inline-flex items-center justify-center;
+    @apply btn-primary;
   }
-  
   .btn-pill-light {
-    @apply bg-lelab-light text-lelab-charcoal px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform duration-300 inline-flex items-center justify-center border border-lelab-charcoal/10;
+    @apply btn-secondary;
   }
 }
 
-/* Custom Scrollbar - Hidden for seamless scrolling but functional */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #0D0D1A;
+  background: #0a0a0a;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #111111; /* lelab-charcoal */
-  border-radius: 8px;
+  background: #2a2a2a;
+  border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #000000;
+  background: #EFB909;
 }

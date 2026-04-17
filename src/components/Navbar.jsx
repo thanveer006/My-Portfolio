@@ -2,132 +2,118 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
-  { title: 'Home', id: 'hero' },
-  { title: 'About', id: 'about' },
-  { title: 'Skills', id: 'skills' },
-  { title: 'Projects', id: 'projects' },
-  { title: 'Experience', id: 'experience' },
-  { title: 'Education', id: 'education' },
+  { title: 'About',          id: 'about' },
+  { title: 'Skills',         id: 'skills' },
+  { title: 'Projects',       id: 'projects' },
+  { title: 'Experience',     id: 'experience' },
+  { title: 'Education',      id: 'education' },
   { title: 'Certifications', id: 'certifications' },
 ];
 
 const Navbar = () => {
-  const [active, setActive] = useState('hero');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [active, setActive]           = useState('hero');
+  const [scrolled, setScrolled]       = useState(false);
+  const [mobileOpen, setMobileOpen]   = useState(false);
 
   useEffect(() => {
-    const allSectionIds = [...navLinks.map(l => l.id), 'contact'];
-    const handleScroll = () => {
-      const sections = allSectionIds.map(id => document.getElementById(id));
-      const scrollPosition = window.scrollY + 100;
+    const ids = ['hero', ...navLinks.map(l => l.id), 'contact'];
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActive(allSectionIds[i]);
-          break;
-        }
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      const pos = window.scrollY + 140;
+      for (let i = ids.length - 1; i >= 0; i--) {
+        const el = document.getElementById(ids[i]);
+        if (el && el.offsetTop <= pos) { setActive(ids[i]); break; }
       }
-
-      if (window.scrollY < 100) setActive('hero');
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const scrollToSection = (id) => {
-    setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop,
-        behavior: 'smooth',
-      });
-      setActive(id);
-    }
+  const go = (id) => {
+    setMobileOpen(false);
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+    setActive(id);
   };
-
-  const isDarkSection = ['about', 'projects', 'experience', 'certifications', 'contact'].includes(active);
 
   return (
     <>
-      <header className="fixed top-0 w-full z-50 py-8 px-8 md:px-16 pointer-events-none flex items-start justify-between">
+      <header className={`fixed top-0 w-full z-50 transition-all duration-500 backdrop-blur-md border-b ${scrolled ? 'py-3 bg-lelab-charcoal/90 border-white/8' : 'py-5 bg-lelab-charcoal/60 border-white/5'}`}>
+        <div className="lelab-container flex items-center justify-between">
 
-        {/* Left: Logo Monogram */}
-        <div
-          className={`w-14 h-14 rounded-full flex items-center justify-center cursor-pointer pointer-events-auto hover:scale-110 transition-all duration-500 font-display font-black text-xl tracking-tight border-2 ${isDarkSection ? 'border-lelab-light text-lelab-light hover:bg-lelab-light hover:text-lelab-charcoal' : 'border-lelab-charcoal text-lelab-charcoal hover:bg-lelab-charcoal hover:text-lelab-yellow'}`}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        >
-          TA
+          {/* Logo */}
+          <button
+            onClick={() => go('hero')}
+            className="w-10 h-10 rounded-full border border-lelab-yellow/40 flex items-center justify-center font-display font-black text-sm text-lelab-yellow hover:bg-lelab-yellow hover:text-lelab-charcoal transition-all duration-300"
+          >
+            TA
+          </button>
+
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => go(link.id)}
+                className={`text-sm font-medium transition-colors duration-300 ${
+                  active === link.id ? 'text-lelab-yellow' : 'text-lelab-light/40 hover:text-lelab-light'
+                }`}
+              >
+                {link.title}
+              </button>
+            ))}
+          </nav>
+
+          {/* CTA */}
+          <button
+            onClick={() => go('contact')}
+            className="hidden lg:flex btn-primary"
+          >
+            Contact Me
+          </button>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            <span className={`block w-6 h-0.5 bg-lelab-light transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-lelab-light transition-all duration-300 ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-lelab-light transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
         </div>
-
-        {/* Center: Desktop Navigation */}
-        <nav className={`hidden lg:flex items-center gap-12 pointer-events-auto backdrop-blur-sm px-10 py-4 rounded-full border transition-all duration-500 ${isDarkSection ? 'bg-lelab-yellow/90 border-lelab-charcoal/5' : 'bg-lelab-charcoal/80 border-lelab-light/10'}`}>
-          {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => scrollToSection(link.id)}
-              className={`text-base font-bold transition-all duration-300 ${
-                isDarkSection
-                  ? active === link.id ? 'text-lelab-charcoal scale-110' : 'text-lelab-charcoal/60 hover:text-lelab-charcoal'
-                  : active === link.id ? 'text-lelab-yellow scale-110' : 'text-lelab-light/70 hover:text-lelab-light'
-              }`}
-            >
-              {link.title}
-            </button>
-          ))}
-        </nav>
-
-        {/* Right: Circular Contact Button */}
-        <button 
-          onClick={() => scrollToSection('contact')} 
-          className="hidden lg:flex w-16 h-16 rounded-full bg-lelab-charcoal text-lelab-yellow items-center justify-center text-2xl hover:bg-lelab-light hover:text-lelab-charcoal hover:scale-110 transition-all duration-500 pointer-events-auto shadow-xl"
-          aria-label="Contact"
-        >
-          👋
-        </button>
-
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="lg:hidden flex flex-col justify-center items-center w-12 h-12 rounded-full bg-lelab-charcoal z-50 focus:outline-none pointer-events-auto shadow-lg"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          <span className={`block w-5 h-0.5 bg-lelab-yellow transition-all duration-300 ease-out ${mobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`} />
-          <span className={`block w-5 h-0.5 bg-lelab-yellow transition-all duration-300 ease-out ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
-          <span className={`block w-5 h-0.5 bg-lelab-yellow transition-all duration-300 ease-out ${mobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`} />
-        </button>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile menu */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, clipPath: 'circle(0% at right top)' }}
-            animate={{ opacity: 1, clipPath: 'circle(150% at right top)' }}
-            exit={{ opacity: 0, clipPath: 'circle(0% at right top)' }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 bg-lelab-charcoal z-40 lg:hidden flex flex-col justify-center items-center px-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 bg-lelab-charcoal z-40 lg:hidden flex flex-col justify-center items-center gap-6 px-8"
           >
-            <div className="flex flex-col gap-8 text-center">
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className={`text-5xl font-display font-bold uppercase tracking-tight ${
-                    active === link.id ? 'text-lelab-yellow' : 'text-lelab-light hover:text-lelab-yellow'
-                  }`}
-                >
-                  {link.title}
-                </button>
-              ))}
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="mt-12 text-5xl font-display font-bold uppercase tracking-tight text-lelab-light hover:text-lelab-yellow"
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => go(link.id)}
+                className={`text-3xl font-display font-bold uppercase tracking-tight transition-colors duration-200 ${
+                  active === link.id ? 'text-lelab-yellow' : 'text-lelab-light/50 hover:text-lelab-light'
+                }`}
               >
-                Let's Talk 👋
+                {link.title}
               </button>
-            </div>
+            ))}
+            <button
+              onClick={() => go('contact')}
+              className="mt-6 btn-primary text-sm"
+            >
+              Let's Work Together
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
